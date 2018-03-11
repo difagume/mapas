@@ -9,15 +9,20 @@
         </div>
 
         <div class="col-md-8">
-            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-                <agm-marker [latitude]="lat" [longitude]="lng">
+            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="clickMapa( $event )">
+
+                <agm-marker *ngFor="let marcador of _ms.marcadores" [latitude]="marcador.lat" [longitude]="marcador.lng" [title]="marcador.titulo"
+                    [markerDraggable]="marcador.draggable">
+
                     <agm-info-window>
-                        <strong>Titulo</strong>
-                        <p>
-                            Este es el barrio de la jose
+                        <strong>{{marcador.titulo}}</strong>
+                        <p *ngIf="marcador.desc">
+                            {{ marcador.desc }}
                         </p>
                     </agm-info-window>
+
                 </agm-marker>
+
             </agm-map>
         </div>
 

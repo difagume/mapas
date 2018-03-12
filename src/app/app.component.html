@@ -5,7 +5,16 @@
     <div class="row">
 
         <div class="col-md-4">
-            <div *ngIf="marcadorSel">
+
+          <div *ngIf="!marcadorSel" class="animated fadeIn fast">
+            <div class="alert alert-info" role="alert">
+              <strong>Haga click</strong>
+              en el mapa para crear un marcador o selecione uno.
+            </div>
+
+          </div>
+
+            <div *ngIf="marcadorSel" class="animated fadeIn fast">
                 <h5>Marcador</h5>
                 <hr>
 
@@ -34,7 +43,7 @@
             </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-8 animated fadeIn fast">
             <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="clickMapa( $event )">
 
                 <agm-marker *ngFor="let marcador of _ms.marcadores; let i = index" [latitude]="marcador.lat" [longitude]="marcador.lng" [title]="marcador.titulo"
@@ -46,7 +55,7 @@
                             {{ marcador.desc }}
                         </p>
                         <p>
-                            <a (click)="_ms.borrarMarcador(i)" class="text-danger" style="cursor: pointer;">Borrar marcador</a>
+                            <a (click)="_ms.borrarMarcador(i); marcadorSel=null;" class="text-danger" style="cursor: pointer;">Borrar marcador</a>
                         </p>
                     </agm-info-window>
 

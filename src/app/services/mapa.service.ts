@@ -22,6 +22,11 @@ export class MapaService {
     this.guardarMarcadores();
   }
 
+  borrarMarcador(i: number) {
+    this.marcadores.splice(i, 1);
+    this.guardarMarcadores();
+  }
+
   guardarMarcadores() {
     localStorage.setItem('marcadores', JSON.stringify(this.marcadores));
   }

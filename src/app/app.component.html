@@ -11,8 +11,8 @@
         <div class="col-md-8">
             <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="clickMapa( $event )">
 
-                <agm-marker *ngFor="let marcador of _ms.marcadores" [latitude]="marcador.lat" [longitude]="marcador.lng" [title]="marcador.titulo"
-                    [markerDraggable]="marcador.draggable">
+                <agm-marker *ngFor="let marcador of _ms.marcadores; let i = index" [latitude]="marcador.lat" [longitude]="marcador.lng" [title]="marcador.titulo"
+                    [markerDraggable]="marcador.draggable" (markerClick)="clickMarcador(marcador, i)" (dragEnd)="dragEndMarcador(marcador, $event)">
 
                     <agm-info-window>
                         <strong>{{marcador.titulo}}</strong>

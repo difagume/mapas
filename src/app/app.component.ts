@@ -13,7 +13,7 @@ export class AppComponent {
   zoom: number = 16;
 
   constructor(public _ms: MapaService) {
-
+    this._ms.cargarMarcadores();
   }
 
   clickMapa(evento) {
@@ -24,9 +24,22 @@ export class AppComponent {
       lng: evento.coords.lng,
       titulo: 'Sin título',
       draggable: true
-    }
+    };
 
     this._ms.insertarMarcador(nuevoMarcador);
+  }
+
+  clickMarcador(marcador: Marcador, i: number) {
+    console.log(marcador, i);
+
+  }
+
+  dragEndMarcador(marcador: Marcador, evento) {
+    // console.log(marcador, evento);
+    marcador.lat = evento.coords.lat;
+    marcador.lng = evento.coords.lng;
+
+    this._ms.guardarMarcadores();
   }
 
 }

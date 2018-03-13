@@ -13,7 +13,7 @@ export class AppComponent {
   zoom: number = 16;
 
   marcadorSel: any = null;
-  draggable: string = "1";
+  draggable: string = '1';
 
   constructor(public _ms: MapaService) {
     this._ms.cargarMarcadores();
